@@ -3,27 +3,25 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
-# Tokeningizni shu yerga yozing
-API_TOKEN = "YOUR_BOT_TOKEN_HERE"
+# Sizning Telegram bot tokeningiz
+API_TOKEN = "9109506024:AAG8G_gAlzhODK57GdHGnPe8rsuRGfYEUB8"
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
-# Web App URL manzili (Frontend fayllaringiz turgan manzil, masalan Vercel/GitHub Pages)
-WEB_APP_URL = "https://sizning-domen.vercel.app"
+# Vercel Web App manzilingiz
+WEB_APP_URL = "https://darkwolfsignalprobe.vercel.app"
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
     # Asosiy menyu tugmalari
     keyboard = InlineKeyboardMarkup(row_width=1)
     
-    # O'yinlar uchun Web App tugmalari
+    # Web App ochish tugmasi
     keyboard.add(
-        InlineKeyboardButton("🍏 Apple of Fortune (Signal)", web_app=WebAppInfo(url=f"{WEB_APP_URL}/apple.html")),
-        InlineKeyboardButton("🐉 Dragon's Gold (Signal)", web_app=WebAppInfo(url=f"{WEB_APP_URL}/dragon.html")),
-        InlineKeyboardButton("💎 Gems & Mines (Signal)", web_app=WebAppInfo(url=f"{WEB_APP_URL}/mines.html"))
+        InlineKeyboardButton("🎮 Signal Menyu va O'yinlar", web_app=WebAppInfo(url=WEB_APP_URL))
     )
     
     # Promokodlar va kanallar
@@ -31,15 +29,15 @@ async def send_welcome(message: types.Message):
         InlineKeyboardButton("🎟 Promokodlarni ko'rish", callback_data="promos"),
         InlineKeyboardButton("📥 Linebet Yuklab olish", url="https://lb-aff.com/L?tag=d_6057106m_66803c_apk1&site=6057106&ad=66803"),
         InlineKeyboardButton("📥 Coldbet Yuklab olish", url="https://coldb10.com/Fhyhq8yL"),
-        InlineKeyboardButton("📢 1-Kanal", url="https://t.me/LINEBET_STAFKALARR"),
-        InlineKeyboardButton("📢 2-Kanal", url="https://t.me/MUZZCOLD")
+        InlineKeyboardButton("📢 LINEBET STAFKALARR", url="https://t.me/LINEBET_STAFKALARR"),
+        InlineKeyboardButton("📢 MUZZCOLD", url="https://t.me/MUZZCOLD")
     )
     
     text = (
         "🤖 **Xush kelibsiz!**\n\n"
         "Bu bot orqali siz **Apple of Fortune**, **Dragon's Gold** va **Gems & Mines** oʻyinlari uchun "
         "signal olishingiz, shuningdek rasmiy promokodlardan foydalanishingiz mumkin!\n\n"
-        "Pastdagi tugmalar yordamida oʻyinni tanlang 👇"
+        "Pastdagi tugmalar yordamida bo'limni tanlang 👇"
     )
     await message.answer(text, reply_markup=keyboard, parse_mode="Markdown")
 
@@ -57,4 +55,4 @@ async def show_promos(call: types.CallbackQuery):
 if __name__ == '__main__':
     from aiogram import executor
     executor.start_polling(dp, skip_updates=True)
-  
+    

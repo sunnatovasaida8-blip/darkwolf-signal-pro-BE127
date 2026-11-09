@@ -3,111 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple of Fortune Signal</title>
+    <title>Signal Bot - Asosiy Menyu</title>
     <style>
         body {
-            background-color: #1b2838;
+            background-color: #0b132b;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
         }
-        .grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
+        h2 {
+            margin-bottom: 25px;
+            color: #f1c40f;
         }
-        .row {
-            display: flex;
-            gap: 8px;
-        }
-        .cell {
-            width: 50px;
-            height: 50px;
-            background: #2a475e;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            border: 2px solid #3c6382;
-        }
-        .active {
-            background: #27ae60;
-            border-color: #2ecc71;
-            box-shadow: 0 0 10px #2ecc71;
-        }
-        button {
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: #e67e22;
+        .menu-btn {
+            display: block;
+            width: 85%;
+            max-width: 320px;
+            margin: 15px auto;
+            padding: 15px;
+            background: #1c2541;
             color: white;
-            border: none;
-            border-radius: 8px;
+            text-decoration: none;
+            border-radius: 10px;
             font-size: 16px;
-            cursor: pointer;
             font-weight: bold;
+            border: 2px solid #3a506b;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: 0.2s;
         }
-        button:active {
-            background: #d35400;
+        .menu-btn:active {
+            transform: scale(0.96);
+            background: #3a506b;
         }
     </style>
 </head>
 <body>
 
-    <h2>🍏 Apple of Fortune Signal</h2>
-    <p>Signal olish uchun tugmani bosing (Maks: 4.02x)</p>
+    <h2>🎮 Signal Tanlash Menyusi</h2>
 
-    <div class="grid" id="grid"></div>
+    <a href="apple.html" class="menu-btn">🍏 Apple of Fortune (4.02x)</a>
+    <a href="dragon.html" class="menu-btn">🐉 Dragon's Gold (4.02x)</a>
+    <a href="mines.html" class="menu-btn">💎 Gems & Mines Signal</a>
 
-    <button onclick="generateSignal()">SIGNAL OLISH</button>
-
-    <script>
-        const multipliers = ["x 4.02", "x 2.41", "x 1.93", "x 1.54", "x 1.23"];
-        
-        function createGrid() {
-            const grid = document.getElementById('grid');
-            grid.innerHTML = "";
-            
-            multipliers.forEach((mult, rowIndex) => {
-                const rowDiv = document.createElement('div');
-                rowDiv.className = 'row';
-                
-                // Har bir qatorda 5 tadan katak (Apple / Dragon uslubi)
-                for (let i = 0; i < 5; i++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'cell';
-                    cell.id = `cell-${rowIndex}-${i}`;
-                    cell.innerText = "🍎";
-                    rowDiv.appendChild(cell);
-                }
-                
-                // Koeffitsient yozuvi
-                const label = document.createElement('div');
-                label.style.lineHeight = "50px";
-                label.style.marginLeft = "10px";
-                label.style.fontSize = "14px";
-                label.style.color = "#f1c40f";
-                label.innerText = mult;
-                rowDiv.appendChild(label);
-                
-                grid.appendChild(rowDiv);
-            });
-        }
-
-        function generateSignal() {
-            createGrid();
-            // Har bir qatordan bittadan tasodifiy katakni yashil (active) qilish
-            multipliers.forEach((_, rowIndex) => {
-                const randomCol = Math.floor(Math.random() * 5);
-                const selectedCell = document.getElementById(`cell-${rowIndex}-${randomCol}`);
-                selectedCell.classList.add('active');
-            });
-        }
-
-        createGrid();
-    </script>
 </body>
 </html>
